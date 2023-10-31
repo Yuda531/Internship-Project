@@ -1,0 +1,23 @@
+.register {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+   }
+   
+   .form-group {
+    margin-bottom: 20px;
+   }
+   
+   .form-group label {
+    display: block;
+    margin-bottom: 10px;
+   }
+   
+   .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+   }
