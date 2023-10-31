@@ -56,7 +56,7 @@ function RegistrationForm() {
         text: "Account Register Successfully!",
       });
     } catch (error) {
-      console.error('Gagal mengirim permintaan:', error);
+      console.error("Gagal mengirim permintaan:", error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -70,9 +70,14 @@ function RegistrationForm() {
       <h1 className="text-center mb-4">User Registration</h1>
       <div className="row mt-5">
         <div className="col-md-6">
+          <div className="right-side container">
+            <h1>Testing</h1>
+          </div>
+        </div>
+        <div className="col-md-6">
           <div className="left-side container">
             <form onSubmit={handleSubmit}>
-            <h3>User Data</h3>
+              <h3>User Data</h3>
               <div className="mb-3">
                 {/* User Data */}
                 <input
@@ -141,8 +146,8 @@ function RegistrationForm() {
                   disabled
                 />
               </div>
-                
-              <h3 className="my-3">Property Data</h3>  
+
+              <h3 className="my-3">Property Data</h3>
               {/* Property Data */}
               <div className="mb-3">
                 <input
@@ -378,10 +383,8 @@ function RegistrationForm() {
                 />
               </div>
               <div className="mb-3">
-                <input
-                  type="text"
+                <select
                   className="form-control"
-                  placeholder="Ownership Type"
                   value={propertyData.ownership_type}
                   onChange={(e) =>
                     setPropertyData({
@@ -389,18 +392,17 @@ function RegistrationForm() {
                       ownership_type: e.target.value,
                     })
                   }
-                />
+                >
+                  <option selected>Select Ownership Type</option>
+                  <option value="Rented">Rented</option>
+                  <option value="Not Rented">Not Rented</option>
+                </select>
               </div>
 
               <button type="submit" className="btn btn-primary">
                 Register
               </button>
             </form>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="right-side container">
-            <h1>Testing</h1>
           </div>
         </div>
       </div>

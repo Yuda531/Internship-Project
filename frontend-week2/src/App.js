@@ -15,9 +15,9 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/" element={<RegistrationForm />} />
           <Route path="/simple" element={<SimpleApi />} />
-          <Route path="/" element={<Api2 />} />
+          <Route path="/api2" element={<Api2 />} />
           <Route path="/api1" element={<API1 />} />
         </Routes>
       </Router>
