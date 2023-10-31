@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const App = () => {
+const API1 = () => {
   const [apiData, setApiData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -37,4 +37,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default API1;
