@@ -56,7 +56,7 @@ function RegistrationForm() {
         text: "Account Register Successfully!",
       });
     } catch (error) {
-      console.error(error);
+      console.error('Gagal mengirim permintaan:', error);
       Swal.fire({
         icon: "error",
         title: "Error",

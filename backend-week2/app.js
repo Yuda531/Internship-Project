@@ -17,21 +17,21 @@ app.post("/api1", async (req, res) => {
     },
     data: {
       user: {
-        username: "aqua55",
+        username: "aqua7",
         password: "a12347",
-        email: "aqua55@gmail.com",
-        first_name: "aqua55",
+        email: "aqua7@gmail.com",
+        first_name: "aqua7",
         last_name: "aja",
         account_type: "user"
         },
         property: {
         building_name: "Le Building 55",
-        unit: "66-55553",
+        unit: "66-5567",
         block: "Block",
         street: "street 66",
         district: 1,
         country: "HN",
-        postal_code: "12155",
+        postal_code: "12167",
         property_group: "Commercial",
         property_sub_group: "Office",
         property_type: "Condominium",
