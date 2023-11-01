@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
+import EngiselleLogo from "./image/engiselle_logo.jpeg";
+import RegisterPic from "./image/Register.png";
 
 function RegistrationForm() {
   const [userData, setUserData] = useState({
@@ -71,7 +73,7 @@ function RegistrationForm() {
       <div className="row mt-5">
         <div className="col-md-6">
           <div className="right-side container">
-            <h1>Testing</h1>
+            <img src={RegisterPic} alt="Register Pic" className=" img-fluid mt-5 me-5"/>
           </div>
         </div>
         <div className="col-md-6">
@@ -239,10 +241,8 @@ function RegistrationForm() {
                 />
               </div>
               <div className="mb-3">
-                <input
-                  type="text"
+                <select
                   className="form-control"
-                  placeholder="Property Group"
                   value={propertyData.property_group}
                   onChange={(e) =>
                     setPropertyData({
@@ -250,13 +250,19 @@ function RegistrationForm() {
                       property_group: e.target.value,
                     })
                   }
-                />
+                >
+                  <option selected>Select Property Group</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Residential">Residential</option>
+                  <option value="Industrial">Industrial</option>
+                  <option value="Agricultural">Agricultural</option>
+                  <option value="Mixed-Use">Mixed-Use</option>
+                  <option value="Recreational">Recreational</option>
+                </select>
               </div>
               <div className="mb-3">
-                <input
-                  type="text"
+                <select
                   className="form-control"
-                  placeholder="Property Sub Group"
                   value={propertyData.property_sub_group}
                   onChange={(e) =>
                     setPropertyData({
@@ -264,13 +270,20 @@ function RegistrationForm() {
                       property_sub_group: e.target.value,
                     })
                   }
-                />
+                >
+                  <option selected>Select Property Sub Group</option>
+                  <option value="Office">Office</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Warehouse">Warehouse</option>
+                  <option value="Multifamily">Multifamily</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Restaurant">Restaurant</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                </select>
               </div>
               <div className="mb-3">
-                <input
-                  type="text"
+                <select
                   className="form-control"
-                  placeholder="Property Type"
                   value={propertyData.property_type}
                   onChange={(e) =>
                     setPropertyData({
@@ -278,7 +291,19 @@ function RegistrationForm() {
                       property_type: e.target.value,
                     })
                   }
-                />
+                >
+                  <option selected>Select Property Type</option>
+                  <option value="Condominium">Condominium</option>
+                  <option value="Townhouse">Townhouse</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Single Family Home">Single Family Home</option>
+                  <option value="Office Building">Office Building</option>
+                  <option value="Retail Space">Retail Space</option>
+                  <option value="Industrial Warehouse">
+                    Industrial Warehouse
+                  </option>
+                  <option value="Agricultural Land">Agricultural Land</option>
+                </select>
               </div>
               <div className="mb-3">
                 <input
