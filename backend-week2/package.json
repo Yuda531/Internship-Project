@@ -2,7 +2,7 @@
     "name": "latihan-nodejs",
     "version": "1.0.0",
     "description": "Latihan membuat API menggunakan NodeJS dan ExpressJS.",
-    "main": "app.js",
+    "main": "appIras.js",
     "scripts": {
       "start": "nodemon app.js"
     },
