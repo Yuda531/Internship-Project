@@ -11,9 +11,14 @@ function RegistrationForm() {
   const [userData, setUserData] = useState({
     username: "",
     password: "",
-    email: "",
+    mobile: "",
+    phone: "",
     first_name: "",
     last_name: "",
+    date_of_birth: "",
+    email: "",
+    is_active: true,
+    manager_id: "",
     account_type: "user",
   });
 
@@ -29,7 +34,7 @@ function RegistrationForm() {
     property_sub_group: "",
     property_type: "",
     unit_type: "",
-    toilets: 0,
+    toilets: "",
     utility_room: "false",
     balcony: "false",
     lease_period: "",
@@ -85,7 +90,7 @@ function RegistrationForm() {
         <div className="col-md-7">
           <div className="left-side container ms-5  rounded-3">
             <form onSubmit={handleSubmit}>
-              <div className="container my-5">
+              <div className="container mb-5">
                 <h1 className="text-center mb-4 display-3">
                   User Registration
                 </h1>
@@ -135,9 +140,6 @@ function RegistrationForm() {
                       />
                       <label htmlFor="email">Email Address</label>
                     </div>
-                  </div>
-
-                  <div className="col-6 px-1 mx-auto">
                     <div className="form-floating col-12 mb-3">
                       <input
                         type="text"
@@ -171,6 +173,73 @@ function RegistrationForm() {
                         required
                       />
                       <label htmlFor="last_name">Last Name</label>
+                    </div>
+                  </div>
+
+                  <div className="col-6 px-1 mx-auto">
+                    <div className="form-floating col-12 mb-3">
+                      <input
+                        type="date"
+                        className="form-control"
+                        placeholder="Date of Birth"
+                        id="date_of_birth"
+                        value={userData.date_of_birth}
+                        onChange={(e) =>
+                          setUserData({
+                            ...userData,
+                            date_of_birth: e.target.value,
+                          })
+                        }
+                      />
+                      <label htmlFor="date_of_birth">Date of Birth</label>
+                    </div>
+                    <div className="form-floating col-12 mb-3">
+                      <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Mobile"
+                        id="mobile"
+                        value={userData.mobile}
+                        onChange={(e) =>
+                          setUserData({
+                            ...userData,
+                            mobile: e.target.value,
+                          })
+                        }
+                      />
+                      <label htmlFor="mobile">Mobile</label>
+                    </div>
+                    <div className="form-floating col-12 mb-3">
+                      <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Phone"
+                        id="phone"
+                        value={userData.phone}
+                        onChange={(e) =>
+                          setUserData({
+                            ...userData,
+                            phone: e.target.value,
+                          })
+                        }
+                      />
+                      <label htmlFor="phone">Phone</label>
+                    </div>
+                    <div className="form-floating col-12 mb-3">
+                      <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Manager Id"
+                        id="manager_id"
+                        value={userData.manager_id}
+                        onChange={(e) =>
+                          setUserData({
+                            ...userData,
+                            manager_id: e.target.value,
+                          })
+                        }
+                      />
+                      <label htmlFor="manager_id">Manager Id</label>
                     </div>
                     {/* <div className="form-floating col-12 mb-3">
                       <input
