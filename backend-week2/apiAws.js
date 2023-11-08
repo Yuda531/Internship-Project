@@ -15,7 +15,7 @@ app.use(
 app.use(bodyParser.json());
 
 
-app.post("/api1", async (req, res) => {
+app.post("/apiAws", async (req, res) => {
   const userData = req.body;
 
   try {
@@ -28,8 +28,20 @@ app.post("/api1", async (req, res) => {
     res.json(response.data);
     console.log("Request successful:", response.data);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to send the request" });
+
+    let code = error.response.data.code;
+
+    if(code == 409){
+      res.status(500).json(
+        { 
+          code: "409",
+          error: "A user with this username/email already exits" 
+        });
+    }
+    else {
+      res.status(500).json({ error: "Failed to send the request" });
+    }
+
   }
 });
 

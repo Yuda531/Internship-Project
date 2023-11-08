@@ -15,7 +15,7 @@ app.use(
 app.use(bodyParser.json());
 
 
-app.post("/api1", async (req, res) => {
+app.post("/apiAws", async (req, res) => {
   const userData = req.body;
 
   try {
