@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const MassDataUpload = () => {
   const [fileData, setFileData] = useState([]);
   const [file, setFile] = useState(null);
-
+  
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
@@ -20,9 +20,7 @@ const MassDataUpload = () => {
   };
 
   const handleUpload = async () => {
-
-    fileData.pop()
-
+    fileData.pop();
 
     for (let i = 0; i < fileData.length; i++) {
       let user = {
@@ -72,16 +70,15 @@ const MassDataUpload = () => {
           text: "Data Successfully Registered",
         });
       } catch (error) {
-
         let errorCode = error.response.data.code;
 
-        if(errorCode == 409){
+        if (errorCode === 409) {
           Swal.fire({
             icon: "error",
             title: "Error",
             text: "Please check your username/email or A property with this unit number and postal code already exits !",
           });
-          break;
+          // break;
         }
         Swal.fire({
           icon: "error",
@@ -91,8 +88,6 @@ const MassDataUpload = () => {
         console.error("Error:", error);
       }
     }
-
-    
   };
 
   return (
@@ -105,9 +100,9 @@ const MassDataUpload = () => {
         accept=".csv"
       />
       {fileData.length > 0 && (
-        <div className="table-responsive">
+        <div className="table-responsive" style={{ maxHeight: '500px', overflowY: 'auto' }}>
           <table className="table table-bordered table-hover">
-            <thead className="thead-light">
+            <thead className="thead-light sticky-top">
               <tr>
                 {Object.keys(fileData[0]).map((key) => (
                   <th key={key}>{key}</th>
@@ -117,8 +112,12 @@ const MassDataUpload = () => {
             <tbody>
               {fileData.map((row, index) => (
                 <tr key={index}>
-                  {Object.values(row).map((value, idx) => (
-                    <td key={idx}>{value}</td>
+                  {Object.keys(row).map((key) => (
+                    <td key={key}>
+                      {key === "password"
+                        ? "*".repeat(row[key].length)
+                        : row[key]}
+                    </td>
                   ))}
                 </tr>
               ))}
