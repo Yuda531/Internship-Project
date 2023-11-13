@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const MassDataUpload = () => {
-  const [fileData, setFileData] = useState([]);
+  const [fileData, setFileData] = useState([]); // eslint-disable-next-line
   const [file, setFile] = useState(null);
   
   const handleFileChange = (event) => {
@@ -69,6 +69,7 @@ const MassDataUpload = () => {
           title: "Success",
           text: "Data Successfully Registered",
         });
+        await new Promise(resolve => setTimeout(resolve, 5000));
       } catch (error) {
         let errorCode = error.response.data.code;
 
@@ -94,7 +95,7 @@ const MassDataUpload = () => {
     <div className="container mt-5">
       <h1 className="text-center">CSV DATA UPLOAD</h1>
       <input
-        className="form-control mb-3 w-25"
+        className="form-control mb-3 w-50"
         type="file"
         onChange={handleFileChange}
         accept=".csv"
