@@ -11,8 +11,8 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<IrasApiCal />} />
-          <Route path="/massDataUpload" element={<MassDataUpload />} />
+          <Route path="/IrasApiCal" element={<IrasApiCal />} />
+          <Route path="/" element={<MassDataUpload />} />
           <Route path="/register" element={<RegistrationForm />} />
         </Routes>
       </Router>
