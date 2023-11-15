@@ -69,7 +69,7 @@ const MassDataUpload = () => {
           title: "Success",
           text: "Data Successfully Registered",
         });
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        
       } catch (error) {
         let errorCode = error.response.data.code;
 

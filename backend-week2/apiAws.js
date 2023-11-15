@@ -25,7 +25,7 @@ app.post("/apiAws", async (req, res) => {
         "content-type": "application/json",
       },
     });
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    
     res.json(response.data);
     console.log("Request successful:", response.data);
   } catch (error) {
