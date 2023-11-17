@@ -3,10 +3,12 @@ import Papa from "papaparse";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
+import FooterRegister from "./components/FooterRegister";
 
 const MassDataUpload = () => {
   const [fileData, setFileData] = useState([]); // eslint-disable-next-line
   const [file, setFile] = useState(null);
+  const [dataFile, setDataFile] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // eslint-disable-next-line
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [paginatedData, setPaginatedData] = useState([]);
@@ -26,43 +28,59 @@ const MassDataUpload = () => {
     });
   };
 
-  const handleUpload = async () => {
-    fileData.pop();
+  const handleDataSubmit = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+    Papa.parse(selectedFile, {
+      complete: (result) => {
+        setDataFile(result.data);
+      },
+      header: true,
+    });
+  };
 
-    for (let i = 0; i < fileData.length; i++) {
+  const handleChange = (event) => {
+    handleFileChange(event);
+    handleDataSubmit(event);
+  };
+
+  const handleUpload = async () => {
+    dataFile.pop();
+
+    for (let i = 0; i < dataFile.length; i++) {
       let user = {
-        username: fileData[i]["username"],
-        password: fileData[i]["password"],
-        email: fileData[i]["email"],
-        first_name: fileData[i]["first_name"],
-        last_name: fileData[i]["last_name"],
-        date_of_birth: fileData[i]["date_of_birth"],
-        mobile: fileData[i]["mobile"],
-        phone: fileData[i]["phone"],
-        account_type: fileData[i]["account_type"],
-        is_active: fileData[i]["is_active"],
-        manager_id: fileData[i]["manager_id"],
+        username: dataFile[i]["username"],
+        password: dataFile[i]["password"],
+        email: dataFile[i]["email"],
+        first_name: dataFile[i]["first_name"],
+        last_name: dataFile[i]["last_name"],
+        date_of_birth: dataFile[i]["date_of_birth"],
+        mobile: dataFile[i]["mobile"],
+        phone: dataFile[i]["phone"],
+        account_type: dataFile[i]["account_type"],
+        is_active: dataFile[i]["is_active"],
+        manager_id: dataFile[i]["manager_id"],
       };
 
       let property = {
-        building_name: fileData[i]["building_name"],
-        unit: fileData[i]["unit"],
-        block: fileData[i]["block"],
-        street: fileData[i]["street"],
-        district: fileData[i]["district"],
-        country: fileData[i]["country"],
-        postal_code: fileData[i]["postal_code"],
-        property_group: fileData[i]["property_group"],
-        property_sub_group: fileData[i]["property_sub_group"],
-        property_type: fileData[i]["property_type"],
-        unit_type: fileData[i]["unit_type"],
-        toilets: fileData[i]["toilets"],
-        utility_room: fileData[i]["utility_room"],
-        balcony: fileData[i]["balcony"],
-        lease_period: fileData[i]["lease_period"],
-        lease_start_date: fileData[i]["lease_start_date"],
-        relationship: fileData[i]["relationship"],
-        ownership_type: fileData[i]["ownership_type"],
+        building_name: dataFile[i]["building_name"],
+        unit: dataFile[i]["unit"],
+        block: dataFile[i]["block"],
+        street: dataFile[i]["street"],
+        district: dataFile[i]["district"],
+        country: dataFile[i]["country"],
+        postal_code: dataFile[i]["postal_code"],
+        property_group: dataFile[i]["property_group"],
+        property_sub_group: dataFile[i]["property_sub_group"],
+        property_type: dataFile[i]["property_type"],
+        unit_type: dataFile[i]["unit_type"],
+        toilets: dataFile[i]["toilets"],
+        utility_room: dataFile[i]["utility_room"],
+        balcony: dataFile[i]["balcony"],
+        lease_period: dataFile[i]["lease_period"],
+        lease_start_date: dataFile[i]["lease_start_date"],
+        relationship: dataFile[i]["relationship"],
+        ownership_type: dataFile[i]["ownership_type"],
       };
 
       let data = { user, property };
@@ -140,12 +158,13 @@ const MassDataUpload = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">CSV DATA UPLOAD</h1>
+    <>
+      <div className="container my-5">
+      <h1 className="text-center mb-3">CSV DATA UPLOAD</h1>
       <input
         className="form-control mb-3 w-50"
         type="file"
-        onChange={handleFileChange}
+        onChange={handleChange}
         accept=".csv"
       />
       {fileData.length > 0 && (
@@ -170,6 +189,8 @@ const MassDataUpload = () => {
         Upload
       </button>
     </div>
+    <FooterRegister />
+    </>
   );
 };
 
