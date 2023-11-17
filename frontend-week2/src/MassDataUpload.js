@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import axios from "axios";
 import Swal from "sweetalert2";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css"; // eslint-disable-next-line
+import React, { useState, useEffect } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 import FooterRegister from "./components/FooterRegister";
+import "./css/NavbarIrasApi.css";
 
 const MassDataUpload = () => {
   const [fileData, setFileData] = useState([]); // eslint-disable-next-line
   const [file, setFile] = useState(null);
   const [dataFile, setDataFile] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // eslint-disable-next-line
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [paginatedData, setPaginatedData] = useState([]);
-
-
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
+    setFile(selectedFile);
     Papa.parse(selectedFile, {
       complete: (result) => {
-        const data = result.data.slice(0, -1); 
-        setFileData(data);
-        setCurrentPage(1);
-        setPaginatedData(data.slice(0, itemsPerPage));
+        let resultData = result.data;
+        resultData.pop();
+        setFileData(resultData);
       },
       header: true,
     });
+  };
+
+  const handleChange = (event) => {
+    handleFileChange(event);
+    handleDataSubmit(event);
   };
 
   const handleDataSubmit = (event) => {
@@ -37,11 +40,6 @@ const MassDataUpload = () => {
       },
       header: true,
     });
-  };
-
-  const handleChange = (event) => {
-    handleFileChange(event);
-    handleDataSubmit(event);
   };
 
   const handleUpload = async () => {
@@ -84,11 +82,9 @@ const MassDataUpload = () => {
       };
 
       let data = { user, property };
-      console.log(data);
 
       try {
         const response = await axios.post("http://localhost:8000/apiAws", data);
-        console.log("Data berhasil diunggah:", response.data);
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -114,84 +110,54 @@ const MassDataUpload = () => {
       }
     }
   };
-  useEffect(() => {
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    setPaginatedData(fileData.slice(indexOfFirstItem, indexOfLastItem));
-  }, [fileData, currentPage, itemsPerPage]);
-
-  const displayData = () => {
-    return paginatedData.map((row, index) => (
-      <tr key={index}>
-        {Object.keys(row).map((key) => (
-          <td key={key}>
-            {key === "password" ? "*".repeat(row[key].length) : row[key]}
-          </td>
-        ))}
-      </tr>
-    ));
-  };
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const renderPagination = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(fileData.length / itemsPerPage); i++) {
-      pageNumbers.push(i);
-    }
-
-    return (
-      <nav>
-        <ul className="pagination mt-4">
-          {pageNumbers.map((number) => (
-            <li key={number} className="page-item">
-              <button onClick={() => paginate(number)} className="page-link">
-                {number}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
-  };
 
   return (
     <>
-      <div className="container my-5">
-      <h1 className="text-center mb-3">CSV DATA UPLOAD</h1>
-      <input
-        className="form-control mb-3 w-50"
-        type="file"
-        onChange={handleChange}
-        accept=".csv"
-      />
-      {fileData.length > 0 && (
-        <div
-          className="table-responsive"
-          style={{ maxHeight: "500px", overflowY: "auto" }}
-        >
-          <table className="table table-bordered table-hover">
-            <thead className="thead-light sticky-top">
-              <tr>
-                {Object.keys(fileData[0]).map((key) => (
-                  <th key={key}>{key}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>{displayData()}</tbody>
-          </table>
+      <div className="page-header d-flex justify-content-center align-items-center">
+        <div className="container-fluid">
+          <h1 className="text-center mb-3">CSV DATA UPLOAD</h1>
         </div>
-      )}
-      {fileData.length > itemsPerPage && renderPagination()}
-      <button className="btn btn-primary my-3" onClick={handleUpload}>
-        Upload
-      </button>
-    </div>
-    <FooterRegister />
+      </div>
+      <div className="container mt-5">
+        <input
+          className="form-control mb-3 w-50"
+          type="file"
+          onChange={handleChange}
+          accept=".csv"
+        />
+
+        <div className="card">
+          <DataTable
+            value={fileData}
+            paginator
+            rows={5}
+            rowsPerPageOptions={[5, 10, 25, 50, 100]}
+            scrollable
+            scrollHeight="600px"
+            style={{ minWidth: "50rem" }}
+          >
+            {fileData.map((row, index) => {
+              let key = Object.keys(row)[index];
+              if (key !== undefined) {
+                return (
+                  <Column
+                    field={key}
+                    header={key}
+                    style={{ width: "25%" }}
+                  ></Column>
+                );
+              }
+            })}
+          </DataTable>
+        </div>
+
+        <button className="btn btn-primary my-3 btn-lg" onClick={handleUpload}>
+          Upload
+        </button>
+      </div>
+      <FooterRegister />
     </>
   );
 };
 
-export default MassDataUpload;
+export default MassDataUpload;
