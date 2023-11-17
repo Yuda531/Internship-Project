@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,13 +7,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const MassDataUpload = () => {
   const [fileData, setFileData] = useState([]); // eslint-disable-next-line
   const [file, setFile] = useState(null);
-  
+  const [currentPage, setCurrentPage] = useState(1); // eslint-disable-next-line
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [paginatedData, setPaginatedData] = useState([]);
+
+
+
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFile(selectedFile);
     Papa.parse(selectedFile, {
       complete: (result) => {
-        setFileData(result.data);
+        const data = result.data.slice(0, -1); 
+        setFileData(data);
+        setCurrentPage(1);
+        setPaginatedData(data.slice(0, itemsPerPage));
       },
       header: true,
     });
@@ -69,7 +76,6 @@ const MassDataUpload = () => {
           title: "Success",
           text: "Data Successfully Registered",
         });
-        
       } catch (error) {
         let errorCode = error.response.data.code;
 
@@ -90,6 +96,48 @@ const MassDataUpload = () => {
       }
     }
   };
+  useEffect(() => {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    setPaginatedData(fileData.slice(indexOfFirstItem, indexOfLastItem));
+  }, [fileData, currentPage, itemsPerPage]);
+
+  const displayData = () => {
+    return paginatedData.map((row, index) => (
+      <tr key={index}>
+        {Object.keys(row).map((key) => (
+          <td key={key}>
+            {key === "password" ? "*".repeat(row[key].length) : row[key]}
+          </td>
+        ))}
+      </tr>
+    ));
+  };
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const renderPagination = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(fileData.length / itemsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+
+    return (
+      <nav>
+        <ul className="pagination mt-4">
+          {pageNumbers.map((number) => (
+            <li key={number} className="page-item">
+              <button onClick={() => paginate(number)} className="page-link">
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+  };
 
   return (
     <div className="container mt-5">
@@ -101,7 +149,10 @@ const MassDataUpload = () => {
         accept=".csv"
       />
       {fileData.length > 0 && (
-        <div className="table-responsive" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+        <div
+          className="table-responsive"
+          style={{ maxHeight: "500px", overflowY: "auto" }}
+        >
           <table className="table table-bordered table-hover">
             <thead className="thead-light sticky-top">
               <tr>
@@ -110,22 +161,11 @@ const MassDataUpload = () => {
                 ))}
               </tr>
             </thead>
-            <tbody>
-              {fileData.map((row, index) => (
-                <tr key={index}>
-                  {Object.keys(row).map((key) => (
-                    <td key={key}>
-                      {key === "password"
-                        ? "*".repeat(row[key].length)
-                        : row[key]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
+            <tbody>{displayData()}</tbody>
           </table>
         </div>
       )}
+      {fileData.length > itemsPerPage && renderPagination()}
       <button className="btn btn-primary my-3" onClick={handleUpload}>
         Upload
       </button>
@@ -133,4 +173,4 @@ const MassDataUpload = () => {
   );
 };
 
-export default MassDataUpload;
+export default MassDataUpload;
