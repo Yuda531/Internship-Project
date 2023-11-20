@@ -20,9 +20,9 @@ const IrasApiCal = () => {
 
   return (
     <>
-      <nav class="navbar">
+      <nav class="navbar fixed-top bg-white ">
         <div class="container">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/irasApiCal">
             <img
               src={EngiselleLogo}
               alt=""
@@ -109,7 +109,7 @@ const IrasApiCal = () => {
         </div>
       </nav>
 
-      <div className="container-fluid">
+      <div className="container-fluid mt-5">
         <div className="page-header d-flex justify-content-center align-items-center">
           <div className="dcell">
             <div className="container">

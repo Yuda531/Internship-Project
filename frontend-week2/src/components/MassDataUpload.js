@@ -1,12 +1,12 @@
 import Papa from "papaparse";
 import axios from "axios";
 import Swal from "sweetalert2";
-import "bootstrap/dist/css/bootstrap.min.css"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import FooterRegister from "./components/FooterRegister";
-import "./css/NavbarIrasApi.css";
+import FooterRegister from "../components/FooterRegister";
+import "../css/NavbarIrasApi.css";
 
 const MassDataUpload = () => {
   const [fileData, setFileData] = useState([]); // eslint-disable-next-line
@@ -113,10 +113,17 @@ const MassDataUpload = () => {
 
   return (
     <>
-      <div className="page-header d-flex justify-content-center align-items-center">
+      {/* <div className="page-header d-flex justify-content-center align-items-center">
         <div className="container-fluid">
           <h1 className="text-center mb-3">CSV DATA UPLOAD</h1>
         </div>
+      </div> */}
+
+      <div className="container">
+        <h1 className="text-center mb-4 mt-2 display-5 fw-semibold ">
+          Mass Data Upload
+        </h1>
+        <hr />
       </div>
       <div className="container mt-5">
         <input

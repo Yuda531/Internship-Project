@@ -177,7 +177,9 @@ const IrasApi9 = () => {
                 />
               </div>
             </div>
-
+            <button className="btn btn-primary me-3" onClick={handleAddTerm}>
+              Add Term
+            </button>
             <button
               className="btn btn-danger"
               onClick={() => handleRemoveTerm(index)}
@@ -186,10 +188,6 @@ const IrasApi9 = () => {
             </button>
           </div>
         ))}
-
-        <button className="btn btn-primary mt-3" onClick={handleAddTerm}>
-          Add Term
-        </button>
 
         <div className="row mt-3">
           <div className="col-md-4 mb-3">

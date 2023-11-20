@@ -3,7 +3,7 @@ import EngiselleLogo from "../image/engiselle_logo2.png"; // Replace 'path-to-yo
 
 const FooterRegister = () => {
   return (
-    <footer className="footer mt-5 bg-light py-4">
+    <footer className="footer mt-5 bg-light py-5">
       <div className="container">
         <div className="row">
           {/* Left Column */}
@@ -38,6 +38,7 @@ const FooterRegister = () => {
                 allowFullScreen=""
                 loading="lazy"
                 title="Google Maps"
+                className="rounded-4"
               ></iframe>
             </div>
           </div>

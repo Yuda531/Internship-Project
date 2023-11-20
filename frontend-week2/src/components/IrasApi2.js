@@ -100,7 +100,7 @@ const IrasApi2 = () => {
         </button>
       </form>
       </div>
-      
+      <hr />
 
       {response && (
         <div className="mt-3">

@@ -3,17 +3,16 @@
     color: #28c2d0;
 }
 
-
-
-  
-
+.button-nav {
+  font-weight: 700;
+}
 
 
   /* Page Header */
   .page-header {
     background-image: url('../image/bg-page-header.jpg'); 
     width: auto;
-    height: 200px;
+    height: 250px;
   }
 
 
@@ -25,6 +24,33 @@
 
 
 
-/* MassDataUpload */
+/* IrasAPI */
+label {
+  font-weight: 700;
+  font-size: larger;
+}
 
+/* SingleDataUpload */
+.left-image {
+  background-image: url(../image/Register3.png);
+  background-repeat: no-repeat;
+}
+
+/* tablet */
+@media (max-width: 991.98px) {
+  .left-image {
+    background-image: none;
+  }
+}
+
+/* mobile */
+@media (max-width: 767.98px) {
+  .left-image {
+    background-image: none;
+  }
+
+  .left-side {
+    width: 100%; 
+  }
+}
 
