@@ -10,6 +10,7 @@ import EngiselleLogo from "./image/engiselle_logo2.png"; // eslint-disable-next-
 import EngiselleLogoCube from "./image/EngiselleLogoCube.png";
 import "./css/NavbarIrasApi.css";
 import FooterRegister from "./components/FooterRegister";
+import { Button } from "primereact/button";
 
 const IrasApiCal = () => {
   const [selectedApi, setSelectedApi] = useState(null);
@@ -114,6 +115,28 @@ const IrasApiCal = () => {
           <div className="dcell">
             <div className="container">
               <h1 className="page-title text-center ">IRAS API CALCULATOR</h1>
+            </div>
+            <div className="d-flex flex-wrap justify-content-between gap-3 mt-5">
+              <Button label="Public Listed Company Shares"  className={`rounded ${
+                  selectedApi === "IrasApi1" ? "active" : ""
+                }`}
+                onClick={() => handleApiSelection("IrasApi1")}/>
+              <Button label="Industrial Property"  className={`rounded ${
+                  selectedApi === "IrasApi2" ? "active" : ""
+                }`}
+                onClick={() => handleApiSelection("IrasApi2")}/>
+              <Button label="Private Company Shares Transfer"  className={`rounded ${
+                  selectedApi === "IrasApi4" ? "active" : ""
+                }`}
+                onClick={() => handleApiSelection("IrasApi4")}/>
+              <Button label="Residential Seller"  className={`rounded ${
+                  selectedApi === "IrasApi7" ? "active" : ""
+                }`}
+                onClick={() => handleApiSelection("IrasApi7")}/>
+              <Button label="Newly Incorporated Private Companies"  className={`rounded ${
+                  selectedApi === "IrasApi9" ? "active" : ""
+                }`}
+                onClick={() => handleApiSelection("IrasApi9")}/>
             </div>
           </div>
         </div>

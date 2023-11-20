@@ -7,6 +7,7 @@ import "./css/NavbarIrasApi.css";
 import FooterRegister from "./components/FooterRegister";
 import MassDataUpload from "./components/MassDataUpload";
 import SingleDataUpload from "./components/SingleDataUpload";
+import { Button } from "primereact/button";
 
 const UploadDataAWS = () => {
   const [selectedApi, setSelectedApi] = useState(null);
@@ -76,23 +77,15 @@ const UploadDataAWS = () => {
             <div className="container my-5">
               <h1 className="page-title text-center ">UPLOAD CUSTOMER DATA</h1>
             </div>
-            <div className="d-flex my-5 justify-content-between">
-              <button
-                className={`btn btn-primary ${
+            <div className="d-flex justify-content-between gap-3">
+              <Button label="Mass Data Upload"  className={`rounded ${
                   selectedApi === "MassDataUpload" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("MassDataUpload")}
-              >
-                Mass Data Upload
-              </button>
-              <button
-                className={`btn btn-primary ${
+                onClick={() => handleApiSelection("MassDataUpload")}/>
+              <Button label="Single Data Upload" className={`rounded ${
                   selectedApi === "SingleDataUpload" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("SingleDataUpload")}
-              >
-                Single Data Upload
-              </button>
+                onClick={() => handleApiSelection("SingleDataUpload")} />
             </div>
           </div>
         </div>

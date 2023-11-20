@@ -6,8 +6,11 @@ import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css"; // eslint-disable-next-line
 import EngiselleLogo from "../image/engiselle_logo.png"; // eslint-disable-next-line
 import RegisterPic3 from "../image/Register3.png";
+import { Button } from "primereact/button";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 function SingleDataUpload() {
+  const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     username: "",
     password: "",
@@ -44,6 +47,7 @@ function SingleDataUpload() {
   });
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const requestData = {
@@ -53,7 +57,7 @@ function SingleDataUpload() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api1",
+        "http://localhost:8000/apiAws",
         requestData
       );
       console.log(response.requestData);
@@ -69,6 +73,8 @@ function SingleDataUpload() {
         title: "Error",
         text: "Failed to Create The Account. Please try again later!",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -598,9 +604,15 @@ function SingleDataUpload() {
                   </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary col-12">
-                  Register
-                </button>
+                <div className="card col-3 mt-3 flex flex-wrap justify-content-center gap-3">
+                  {loading ? (
+                    <ProgressSpinner
+                      style={{ width: "50px", height: "50px" }}
+                    />
+                  ) : (
+                    <Button label="Submit" icon="pi pi-check" />
+                  )}
+                </div>
               </div>
             </form>
           </div>
