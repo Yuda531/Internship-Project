@@ -1,14 +1,12 @@
-
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RegistrationForm from "./RegisterForm";
-import MassDataUpload from "./MassDataUpload";
-import IrasApiCal from "./IrasApiCal";
-import UploadDataAWS from "./UploadData";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RegistrationForm from "./Pages/RegisterForm";
+import MassDataUpload from "./Pages/MassDataUpload";
+import IrasApiCal from "./Pages/IrasApiCal";
+import UploadDataAWS from "./Pages/UploadData";
+import PrimeChart from "./Pages/LearnChart";
 
 const App = () => {
-
   return (
     <>
       <Router>
@@ -17,6 +15,7 @@ const App = () => {
           <Route path="/irasApiCal" element={<IrasApiCal />} />
           <Route path="/massDataUpload" element={<MassDataUpload />} />
           <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/primeChart" element={<PrimeChart />} />
         </Routes>
       </Router>
     </>

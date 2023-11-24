@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import IrasApi1 from "./components/IrasApi1";
-import IrasApi2 from "./components/IrasApi2";
-import IrasApi4 from "./components/IrasApi4";
-import IrasApi7 from "./components/IrasApi7";
-import IrasApi9 from "./components/IrasApi9"; // eslint-disable-next-line
-import EngiselleLogo from "./image/engiselle_logo2.png"; // eslint-disable-next-line
-import EngiselleLogoCube from "./image/EngiselleLogoCube.png";
-import "./css/NavbarIrasApi.css";
-import FooterRegister from "./components/FooterRegister";
+import IrasApi1 from "../components/IrasAPI/IrasApi1";
+import IrasApi2 from "../components/IrasAPI/IrasApi2";
+import IrasApi4 from "../components/IrasAPI/IrasApi4";
+import IrasApi7 from "../components/IrasAPI/IrasApi7";
+import IrasApi9 from "../components/IrasAPI/IrasApi9"; // eslint-disable-next-line
+import EngiselleLogo from "../image/engiselle_logo2.png"; // eslint-disable-next-line
+import EngiselleLogoCube from "../image/EngiselleLogoCube.png";
+import "../css/NavbarIrasApi.css";
+import FooterRegister from "../components/FooterRegister";
 import { Button } from "primereact/button";
 
 const IrasApiCal = () => {
@@ -117,26 +117,41 @@ const IrasApiCal = () => {
               <h1 className="page-title text-center ">IRAS API CALCULATOR</h1>
             </div>
             <div className="d-flex flex-wrap justify-content-between gap-3 mt-5">
-              <Button label="Public Listed Company Shares"  className={`rounded ${
+              <Button
+                label="Public Listed Company Shares"
+                className={`rounded ${
                   selectedApi === "IrasApi1" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("IrasApi1")}/>
-              <Button label="Industrial Property"  className={`rounded ${
+                onClick={() => handleApiSelection("IrasApi1")}
+              />
+              <Button
+                label="Industrial Property"
+                className={`rounded ${
                   selectedApi === "IrasApi2" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("IrasApi2")}/>
-              <Button label="Private Company Shares Transfer"  className={`rounded ${
+                onClick={() => handleApiSelection("IrasApi2")}
+              />
+              <Button
+                label="Private Company Shares Transfer"
+                className={`rounded ${
                   selectedApi === "IrasApi4" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("IrasApi4")}/>
-              <Button label="Residential Seller"  className={`rounded ${
+                onClick={() => handleApiSelection("IrasApi4")}
+              />
+              <Button
+                label="Residential Seller"
+                className={`rounded ${
                   selectedApi === "IrasApi7" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("IrasApi7")}/>
-              <Button label="Newly Incorporated Private Companies"  className={`rounded ${
+                onClick={() => handleApiSelection("IrasApi7")}
+              />
+              <Button
+                label="Newly Incorporated Private Companies"
+                className={`rounded ${
                   selectedApi === "IrasApi9" ? "active" : ""
                 }`}
-                onClick={() => handleApiSelection("IrasApi9")}/>
+                onClick={() => handleApiSelection("IrasApi9")}
+              />
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import Papa from "papaparse";
 import axios from "axios";
 import Swal from "sweetalert2";
-import "bootstrap/dist/css/bootstrap.min.css"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import FooterRegister from "./components/FooterRegister";
-import "./css/NavbarIrasApi.css";
+import FooterRegister from "../components/FooterRegister";
+import "../css/NavbarIrasApi.css";
 
 const MassDataUpload = () => {
   const [fileData, setFileData] = useState([]); // eslint-disable-next-line

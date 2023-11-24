@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
-import EngiselleLogo from "./image/engiselle_logo.png";
-import RegisterPic3 from "./image/Register3.png";
+import EngiselleLogo from "../image/engiselle_logo.png";
+import RegisterPic3 from "../image/Register3.png";
 
 function RegistrationForm() {
   const [userData, setUserData] = useState({
